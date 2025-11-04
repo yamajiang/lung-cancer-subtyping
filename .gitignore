@@ -1,4 +1,7 @@
 
 #data
 data/metadata/
-data/raw/
+data/raw/TCGA-LUAD/slides
+data/raw/TCGA-LUSC/slides
+
+data/index
