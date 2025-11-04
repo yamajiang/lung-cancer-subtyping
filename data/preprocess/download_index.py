@@ -1,5 +1,6 @@
 """
-Download TCGA WSI slides 
+Download TCGA WSI slides to data/raw/{project_id}/slides/{'file_name'}
+where project_id = TCGA-LUAD or TCGA-LUSC
 """
 
 import os, json, requests, argparse

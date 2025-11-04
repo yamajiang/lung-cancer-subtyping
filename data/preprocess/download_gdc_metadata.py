@@ -1,6 +1,6 @@
 """
 Download GDC clinical and biospecimen metadata in json
-for TCGA-LUAD and TCGA-LUSC
+for TCGA-LUAD and TCGA-LUSC saved under data/metadata/
 """
 
 import requests

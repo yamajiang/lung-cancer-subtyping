@@ -1,6 +1,7 @@
 """
 Build index for LUAD vs LUSC WSI classification
-Fetches TCGA slides via the GDC API, stores metadata, and splits into train/val/test
+Fetches TCGA slides via the GDC API, stores metadata, and splits into train/val/test 
+75/15/10 split
 """
 import os
 import json 
