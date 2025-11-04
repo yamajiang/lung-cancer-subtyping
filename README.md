@@ -11,3 +11,9 @@ This project uses datasets from **The Cancer Genome Atlas (TCGA)** and the **Nat
 - [TCGA-LUAD](https://www.cancerimagingarchive.net/collection/tcga-luad/) – Lung adenocarcinoma whole-slide images  
 - [TCGA-LUSC](https://www.cancerimagingarchive.net/collection/tcga-lusc/) – Lung squamous cell carcinoma whole-slide images  
 - [GDC Data Portal](https://portal.gdc.cancer.gov/analysis_page?app=) – Provides slide-level labels
+
+# Preprocessing
+Navigate to data/preprocess:
+- Run index.py to build index for LUAD and LUSC WSI classfication. This fetches TCGA slides from the GDC API, stores the metadata, and splits into train/val/test (75/15/10)
+- Run download_index.py to download the TCGA WSI slides which will be saved under data/ data/raw/{project_id}/slides/{file_name}
+- Run download_gdc_metadata.py to download the clinical and metadata in json formate from GDC API
