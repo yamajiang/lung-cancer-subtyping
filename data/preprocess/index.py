@@ -1,6 +1,6 @@
 """
 Build index for LUAD vs LUSC WSI classification
-FetchesTCGA slides via the GDC API, stores metadata, and splits into train/test
+Fetches TCGA slides via the GDC API, stores metadata, and splits into train/val/test
 """
 import os
 import json 
@@ -68,13 +68,23 @@ def main():
     random.seed(args.seed)
     cases = list({r["case_id"] for r in full})
     random.shuffle(cases)
-    n_train = int(len(cases) * args.train_frac)
-    train_cases = set(cases[:n_train])
-    train = [r for r in full if r["case_id"] in train_cases]
-    test = [r for r in full if r["case_id"] not in train_cases]
 
-    for name, recs in [("train", train), ("test", test)]:
-        with (data_root / f"{name}/index.jsonl").open("w") as f:
+    n_train = int(len(cases) * 0.75)
+    n_val = int(len(cases) * 0.15)
+    # remaining goes to test
+    train_cases = set(cases[:n_train])
+    val_cases = set(cases[n_train:n_train + n_val])
+    test_cases = set(cases[n_train + n_val:])
+
+    train= [r for r in full if r["case_id"] in train_cases]
+    val= [r for r in full if r["case_id"] in val_cases]
+    test= [r for r in full if r["case_id"] in test_cases]
+
+    # save split indices
+    for name, recs in [("train", train), ("val", val), ("test", test)]:
+        folder= data_root / name
+        ensure_dir(folder)
+        with (folder / "index.jsonl").open("w") as f:
             for r in recs:
                 f.write(json.dumps(r) + "\n")
         print(f"Wrote {name}/index.jsonl with {len(recs)} samples")
