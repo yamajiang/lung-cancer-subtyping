@@ -16,4 +16,4 @@ This project uses datasets from **The Cancer Genome Atlas (TCGA)** and the **Nat
 Navigate to data/preprocess:
 - Run index.py to build index for LUAD and LUSC WSI classfication. This fetches TCGA slides from the GDC API, stores the metadata, and splits into train/val/test (75/15/10)
 - Run download_index.py to download the TCGA WSI slides which will be saved under data/ data/raw/{project_id}/slides/{file_name}
-- Run download_gdc_metadata.py to download the clinical and metadata in json formate from GDC API
+- Run download_gdc_metadata.py to download the clinical and biospecimen metadata in json format from GDC API
